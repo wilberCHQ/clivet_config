@@ -3,8 +3,8 @@
 NAME="clivet"                                  # Name of the application
 DJANGODIR=/var/www/clivet/clivet            # Django project directory
 SOCKFILE=/var/www/clivet/run/gunicorn.sock  # we will communicte using this unix socket
-USER=root                                        # the user to run as
-GROUP=root                                     # the group to run as
+USER=clivet_user                                        # the user to run as
+GROUP=webapps                               # the group to run as
 NUM_WORKERS=1 #3                                     # how many worker processes should Gunicorn spawn
 DJANGO_SETTINGS_MODULE=config.settings.local             # which settings file should Django use
 DJANGO_WSGI_MODULE=config.wsgi                     # WSGI module name
