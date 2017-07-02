@@ -1,15 +1,13 @@
 #!/bin/bash
 
-NAME="clivet"                                  # Name of the application
-DJANGODIR=/var/www/clivet/clivet            # Django project directory
-SOCKFILE=/var/www/clivet/run/gunicorn.sock  # we will communicte using this unix socket
-USER=clivet_user                                        # the user to run as
+NAME="CloudSYSbilioteca"                                  # Name of the application
+DJANGODIR=/var/www/CloudSYSbilioteca/CloudSYSbilioteca            # Django project directory
+SOCKFILE=/var/www/CloudSYSbilioteca/run/gunicorn.sock  # we will communicte using this unix socket
+USER=BibliotecaUser                                        # the user to run as
 GROUP=webapps                               # the group to run as
 NUM_WORKERS=1 #3                                     # how many worker processes should Gunicorn spawn
-DJANGO_SETTINGS_MODULE=config.settings.local             # which settings file should Django use
-DJANGO_WSGI_MODULE=config.wsgi                     # WSGI module name
-
-echo "Starting $NAME as `pacifi`"
+DJANGO_SETTINGS_MODULE=main.settings             # which settings file should Django use
+DJANGO_WSGI_MODULE=main.wsgi                     # WSGI module name
 
 # Activate the virtual environment
 cd $DJANGODIR
