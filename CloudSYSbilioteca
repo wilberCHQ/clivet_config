@@ -9,7 +9,7 @@ upstream CloudSYSbilioteca_server {
 server {
 
     listen   80;
-    server_name 35.188.192.164;
+    server_name 35.184.199.177 ;
 
     client_max_body_size 4G;
 
