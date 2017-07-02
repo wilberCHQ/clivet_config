@@ -1,9 +1,9 @@
 #!/bin/bash
 echo "Iniciando $NAME como `whoami`"
 #================================================================================
-PROJECT='clivet'
-GIT_REP='https://gitlab.com/wannabe/CLIVET.git'
-USER='clivet_user'
+PROJECT='CloudSYSbilioteca'
+GIT_REP='https://gitlab.com/beth.ramos/CloudSYSbilioteca.git'
+USER='BibliotecaUser'
 #================================================================================
 apt update
 apt upgrade
@@ -30,11 +30,11 @@ chown -R $USER:users /var/www/$PROJECT
 chmod -R g+w /var/www/$PROJECT
 echo ">>>>>>>>>>>>>>>>>>>>>>>>>>Gunicorn"
 cd /var/www/$PROJECT
-wget https://raw.githubusercontent.com/yuselenin/clivet_config/master/gunicorn_start -P /var/www/$PROJECT/bin/
+wget https://raw.githubusercontent.com/wilberCHQ/clivet_config/master/gunicorn_start -P /var/www/$PROJECT/bin/
 chmod u+x bin/gunicorn_start
 echo ">>>>>>>>>>>>>>>>>>>>>>>>>>supervisor"
 apt install supervisor
-wget https://raw.githubusercontent.com/yuselenin/clivet_config/master/clivet.conf -P /etc/supervisor/conf.d/
+wget https://raw.githubusercontent.com/wilberCHQ/clivet_config/master/CloudSYSbilioteca.conf -P /etc/supervisor/conf.d/
 mkdir -p /var/www/$PROJECT/logs/
 touch /var/www/$PROJECT/logs/gunicorn_supervisor.log 
 supervisorctl reread
@@ -44,6 +44,6 @@ supervisorctl status $PROJECT
 echo ">>>>>>>>>>>>>>>>>>>>>>>>>>nginx"
 apt install nginx
 service nginx start
-wget https://raw.githubusercontent.com/yuselenin/clivet_config/master/clivet -P /etc/nginx/sites-available/
+wget https://raw.githubusercontent.com/wilberCHQ/clivet_config/master/CloudSYSbilioteca -P /etc/nginx/sites-available/
 ln -s /etc/nginx/sites-available/$PROJECT /etc/nginx/sites-enabled/$PROJECT
 service nginx restart
