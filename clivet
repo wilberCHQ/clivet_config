@@ -1,27 +1,27 @@
-upstream clivet_server {
+upstream CloudSYSbilioteca_server {
   # fail_timeout=0 means we always retry an upstream even if it failed
   # to return a good HTTP response (in case the Unicorn master nukes a
   # single worker for timing out).
 
-  server unix:/var/www/clivet/run/gunicorn.sock fail_timeout=0;
+  server unix:/var/www/CloudSYSbilioteca/run/gunicorn.sock fail_timeout=0;
 }
 
 server {
 
     listen   80;
-    server_name 104.196.113.145;
+    server_name 35.188.192.164;
 
     client_max_body_size 4G;
 
-    access_log /var/www/clivet/logs/nginx-access.log;
-    error_log /var/www/clivet/logs/nginx-error.log;
+    access_log /var/www/CloudSYSbilioteca/logs/nginx-access.log;
+    error_log /var/www/CloudSYSbilioteca/logs/nginx-error.log;
  
     location /static/ {
-        alias   /var/www/clivet/clivet/static/;
+        alias   /var/www/CloudSYSbilioteca/CloudSYSbilioteca/static/;
     }
     
     location /media/ {
-        alias   /var/www/clivet/clivet/media/;
+        alias   /var/www/CloudSYSbilioteca/CloudSYSbilioteca/media/;
     }
 
     location / {
@@ -51,7 +51,7 @@ server {
         # Try to serve static files from nginx, no point in making an
         # *application* server like Unicorn/Rainbows! serve static files.
         if (!-f $request_filename) {
-            proxy_pass http://clivet_server;
+            proxy_pass http://CloudSYSbilioteca_server;
             break;
         }
     }
@@ -59,6 +59,6 @@ server {
     # Error pages
     error_page 500 502 503 504 /500.html;
     location = /500.html {
-        root /var/www/clivet/clivet/static/;
+        root /var/www/CloudSYSbilioteca/CloudSYSbilioteca/static/;
     }
 }
